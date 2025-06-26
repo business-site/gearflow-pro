@@ -144,6 +144,56 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .mobile-menu .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans leading-normal tracking-normal">
@@ -156,21 +206,36 @@
                 <div class="app-icon"></div>
                 <a href="#" class="text-2xl font-bold text-orange-500">GearFlow Pro</a>
             </div>
-            <ul class="flex space-x-6 text-lg">
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="text-white text-2xl focus:outline-none md:hidden">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="hidden md:flex space-x-6 text-lg">
                 <li><a href="#features" class="hover:text-orange-500 transition duration-300">Features</a></li>
                 <li><a href="#benefits" class="hover:text-orange-500 transition duration-300">Benefits</a></li>
                 <li><a href="#contact" class="hover:text-orange-500 transition duration-300">Contact</a></li>
                 <!-- Link to your main application's login page -->
-                <li><a href="index.html" class="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-300 font-medium">Download Now</a></li>
+                <li><a href="downloads" class="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-300 font-medium">Download Now</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <span class="close-btn" id="close-menu-button">&times;</span>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="downloads">Download Now</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero-bg h-screen flex items-center justify-center text-center relative">
         <div class="hero-overlay"></div>
         <div class="relative z-10 text-white px-4">
-            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+            <h1 class="text-4xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up">
                 Revolutionize Your AutoParts Inventory.
             </h1>
             <p class="text-xl md:text-2xl mb-8 opacity-0 animate-fade-in delay-500">
@@ -185,7 +250,7 @@
     <!-- Features Section -->
     <section id="features" class="py-20 bg-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-12 text-gray-900 animate-on-scroll">Key Features Designed for You</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 animate-on-scroll">Key Features Designed for You</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <!-- Feature Card 1 -->
                 <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-on-scroll">
@@ -242,23 +307,23 @@
     <!-- Benefits Section -->
     <section id="benefits" class="py-20 bg-gray-900 text-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-12 text-orange-500 animate-on-scroll">Why Choose GearFlow Pro?</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-orange-500 animate-on-scroll">Why Choose GearFlow Pro?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="text-left animate-on-scroll">
                     <div class="mb-8">
-                        <h3 class="text-3xl font-semibold mb-4 flex items-center"><i class="fas fa-dollar-sign text-orange-500 mr-3 text-2xl"></i> Save Money</h3>
+                        <h3 class="text-2xl md:text-3xl font-semibold mb-4 flex items-center"><i class="fas fa-dollar-sign text-orange-500 mr-3 text-2xl"></i> Save Money</h3>
                         <p class="text-lg text-gray-300 leading-relaxed">
                             Reduce overstocking and eliminate forgotten inventory, directly impacting your bottom line. Optimize your purchasing by knowing exactly what you need.
                         </p>
                     </div>
                     <div class="mb-8">
-                        <h3 class="text-3xl font-semibold mb-4 flex items-center"><i class="fas fa-hourglass-half text-orange-500 mr-3 text-2xl"></i> Save Time</h3>
+                        <h3 class="text-2xl md:text-3xl font-semibold mb-4 flex items-center"><i class="fas fa-hourglass-half text-orange-500 mr-3 text-2xl"></i> Save Time</h3>
                         <p class="text-lg text-gray-300 leading-relaxed">
                             Automate manual tasks, speed up inventory counts, and quickly find parts, freeing up your team for more critical work.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-3xl font-semibold mb-4 flex items-center"><i class="fas fa-cogs text-orange-500 mr-3 text-2xl"></i> Improve Efficiency</h3>
+                        <h3 class="text-2xl md:text-3xl font-semibold mb-4 flex items-center"><i class="fas fa-cogs text-orange-500 mr-3 text-2xl"></i> Improve Efficiency</h3>
                         <p class="text-lg text-gray-300 leading-relaxed">
                             With accurate data and streamlined workflows, your operations become more agile and responsive to demand.
                         </p>
@@ -274,11 +339,11 @@
     <!-- Call to Action Section -->
     <section class="py-20 bg-orange-500 text-white text-center">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold mb-6 animate-on-scroll">Ready to Transform Your AutoParts Business?</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">Ready to Transform Your AutoParts Business?</h2>
             <p class="text-xl mb-10 animate-on-scroll">
                 Join countless businesses already experiencing the power of intelligent inventory management.
             </p>
-            <a href="index.html" class="bg-white text-orange-500 text-2xl font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 inline-block animate-on-scroll">
+            <a href="downloads" class="bg-white text-orange-500 text-2xl font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 inline-block animate-on-scroll">
                 Download Now <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
@@ -287,7 +352,7 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-200">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-12 text-gray-900 animate-on-scroll">Contact Us</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 animate-on-scroll">Contact Us</h2>
             <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto animate-on-scroll">
                 Have questions or need a personalized demo? Reach out to our team, and we'll be happy to assist you.
             </p>
@@ -320,6 +385,29 @@
 
     <!-- JavaScript for UI/UX enhancements -->
     <script>
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+            });
+
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+
+            // Close the mobile menu when a link is clicked
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        });
+
         // Hero Section Animations
         document.addEventListener('DOMContentLoaded', () => {
             const heroTitle = document.querySelector('.hero-bg h1');
