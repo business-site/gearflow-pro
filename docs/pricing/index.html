@@ -19,6 +19,8 @@
             position: relative; /* For overlay positioning */
             overflow: hidden; /* Hide the overflowing parts of the zoom animation */
             transform-origin: center; /* Ensure scaling from the center */
+            width: 100%; /* Ensure body takes up full width */
+            min-width: 320px; /* Minimum width for small screens */
         }
 
         body::before {
@@ -177,6 +179,10 @@
             details > div {
                 max-height: 200px; /* Adjust as needed */
                 overflow-y: auto;
+            }
+
+            body {
+                overflow-x: hidden; /* Hide horizontal overflow on mobile */
             }
         }
 
