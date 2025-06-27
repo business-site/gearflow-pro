@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - GearFlow Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111827; /* Dark background */
+            color: #fff; /* Light text for contrast */
+            line-height: 1.6;
+            overflow-x: hidden;
+            margin: 0; /* Reset default margin */
+            /* Background Image and Overlay */
+            position: relative; /* For overlay positioning */
+            overflow: hidden; /* Hide the overflowing parts of the zoom animation */
+            transform-origin: center; /* Ensure scaling from the center */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://t4.ftcdn.net/jpg/07/40/64/65/360_F_740646578_tdmIqEzvW4S6IwLICNELkMlEqtaQoZd4.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: rgba(0, 0, 0, 0.627); /* Adjust the last value (alpha) for the tint intensity */
+            z-index: -1; /* Place the overlay behind the content */
+            animation: zoomInOut 20s infinite alternate; /* Zoom in and out animation */
+            transform-origin: center;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 26, 26, 0.653); /* Adjust the last value (alpha) for the tint intensity */
+            z-index: -1; /* Place the overlay behind the content */
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #1f2937; /* Darker header */
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        header a {
+            color: #f97316; /* Orange */
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        section {
+            padding: 2rem 0; /* Reduced padding */
+        }
+        /* Updated Pricing Table Styles */
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .pricing-card {
+            background-color: #1f2937; /* Dark card background */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #374151; /* Add a subtle border */
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Even deeper shadow on hover */
+        }
+        .pricing-card h3 {
+            font-size: 1.2rem; /* Reduced font size */
+            margin-bottom: 10px; /* Reduced margin */
+            color: #fff; /* White text */
+        }
+        .pricing-card .price {
+            font-size: 1.5rem; /* Reduced font size */
+            font-weight: bold;
+            color: #f97316; /* Orange */
+            margin-bottom: 10px; /* Reduced margin */
+        }
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px; /* Reduced margin */
+        }
+        .pricing-card li {
+            margin-bottom: 6px; /* Reduced margin */
+            color: #9ca3af; /* Light gray text */
+            font-size: 0.9rem; /* Reduced font size */
+        }
+        .pricing-button {
+            background-color: #f97316; /* Orange */
+            color: #fff;
+            padding: 8px 16px; /* Reduced padding */
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            font-size: 0.9rem; /* Reduced font size */
+        }
+        .pricing-button:hover {
+            background-color: #323232;
+        }
+        footer {
+            background-color: #1f2937; /* Darker footer */
+            color: #9ca3af; /* Light gray text */
+            text-align: center;
+            padding: 6rem 0; /* Reduced padding */
+            width: 100%;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Apply Animation to Pricing Cards */
+        .pricing-card {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        /* Stagger Animation Delay */
+        .pricing-card:nth-child(1) { animation-delay: 0.1s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.2s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+        .pricing-card:nth-child(4) { animation-delay: 0.4s; }
+        .pricing-card:nth-child(5) { animation-delay: 0.5s; }
+        .pricing-card:nth-child(6) { animation-delay: 0.6s; }
+        .pricing-card:nth-child(7) { animation-delay: 0.7s; }
+        .pricing-card:nth-child(8) { animation-delay: 0.8s; }
+        .pricing-card:nth-child(9) { animation-delay: 0.9s; }
+        .pricing-card:nth-child(10) { animation-delay: 1.0s; }
+
+        /* Collapsible Section Styles */
+        details {
+            margin-bottom: 1rem;
+            border: 1px solid #374151; /* Darker border */
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1f2937; /* Dark background */
+        }
+
+        summary {
+            padding: 1rem;
+            background-color: #374151; /* Darker summary background */
+            cursor: pointer;
+            font-weight: bold;
+            color: #fff; /* White text */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: '\f078'; /* Font Awesome caret-down icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        details[open] summary::after {
+            transform: rotate(-180deg);
+        }
+
+        details > div {
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/gearflow-pro">GearFlow Pro</a>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2 class="text-3xl font-semibold mb-6 text-center text-orange-500">Activation Key Pricing</h2>
+
+            <!-- Single User Keys -->
+            <details open>
+                <summary>Single User Keys</summary>
+                <div>
+                    <div class="pricing-table">
+                        <div class="pricing-card">
+                            <h3>Monthly Key</h3>
+                            <div class="price">$19.99</div>
+                            <ul>
+                                <li>Access to all features</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Quarterly Key</h3>
+                            <div class="price">$49.99</div>
+                            <ul>
+                                <li>Access to all features</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Yearly Key</h3>
+                            <div class="price">$179.99</div>
+                            <ul>
+                                <li>Access to all features</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Multi User Keys -->
+            <details>
+                <summary>2 User Key</summary>
+                <div>
+                    <div class="pricing-table">
+                        <div class="pricing-card">
+                            <h3>Monthly</h3>
+                            <div class="price">$34.99</div>
+                            <ul>
+                                <li>Access for 2 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Quarterly</h3>
+                            <div class="price">$89.99</div>
+                            <ul>
+                                <li>Access for 2 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Yearly</h3>
+                            <div class="price">$319.99</div>
+                            <ul>
+                                <li>Access for 2 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>4 User Key</summary>
+                <div>
+                    <div class="pricing-table">
+                        <div class="pricing-card">
+                            <h3>Monthly</h3>
+                            <div class="price">$59.99</div>
+                            <ul>
+                                <li>Access for 4 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Quarterly</h3>
+                            <div class="price">$159.99</div>
+                            <ul>
+                                <li>Access for 4 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Yearly</h3>
+                            <div class="price">$579.99</div>
+                            <ul>
+                                <li>Access for 4 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>6 User Key</summary>
+                <div>
+                    <div class="pricing-table">
+                        <div class="pricing-card">
+                            <h3>Monthly</h3>
+                            <div class="price">$79.99</div>
+                            <ul>
+                                <li>Access for 6 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Quarterly</h3>
+                            <div class="price">$219.99</div>
+                            <ul>
+                                <li>Access for 6 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Yearly</h3>
+                            <div class="price">$799.99</div>
+                            <ul>
+                                <li>Access for 6 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>8 User Key</summary>
+                <div>
+                    <div class="pricing-table">
+                        <div class="pricing-card">
+                            <h3>Monthly</h3>
+                            <div class="price">$99.99</div>
+                            <ul>
+                                <li>Access for 8 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Quarterly</h3>
+                            <div class="price">$279.99</div>
+                            <ul>
+                                <li>Access for 8 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Yearly</h3>
+                            <div class="price">$999.99</div>
+                            <ul>
+                                <li>Access for 8 users</li>
+                                <li>Updates and support</li>
+                            </ul>
+                            <a href="#" class="pricing-button">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Custom Users -->
+            <div class="text-center mt-12">
+                <h3 class="text-2xl font-semibold mb-4 text-orange-500">Custom Users</h3>
+                <p>Contact us for a custom user key tailored to your specific needs.</p>
+                <a href="contact.html" class="pricing-button">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 GearFlow Pro. All rights reserved.</p>
+    </footer>
+</body>
+</html>
