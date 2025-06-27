@@ -195,47 +195,79 @@
             color: white;
         }
 
-        /* Image Stack Styling */
+        /* Image Stack Styling - Default to Top-Bottom on Mobile */
         .image-stack {
-            display: flex; /* Use flexbox to arrange images horizontally */
             position: relative;
             width: 100%;
-            height: 300px; /* Adjust as needed */
-            justify-content: center; /* Center the images horizontally */
+            height: 400px; /* Adjust as needed */
         }
 
         .image-stack img {
-            width: 50%; /* Each image takes up 50% of the container width */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, opacity 0.3s ease;
-            position: absolute; /* Position images on top of each other */
-            cursor: pointer; /* Change cursor to indicate clickability */
+            cursor: pointer;
         }
 
         .image-stack img:nth-child(1) {
-            left: 10%; /* Initial position for the first image */
-            transform: translateX(-20px); /* Slightly offset the first image */
+            transform: translateY(-20px);
             opacity: 1;
         }
 
         .image-stack img:nth-child(2) {
-            left: 40%; /* Initial position for the second image */
-            transform: translateX(20px); /* Slightly offset the second image */
+            transform: translateY(20px);
             opacity: 1;
         }
 
         .image-stack:hover img:nth-child(1) {
-            transform: translateX(-100px); /* Move first image further on hover */
+            transform: translateY(-100px);
             opacity: 1;
         }
 
         .image-stack:hover img:nth-child(2) {
-            transform: translateX(30px); /* Bring second image to center on hover */
+            transform: translateY(0px);
             opacity: 1;
-            width: 80%;;
+        }
+
+        /* Media Query for Larger Screens (Left-to-Right Stacking) */
+        @media (min-width: 768px) {
+            .image-stack {
+                display: flex; /* Use flexbox to arrange images horizontally */
+                height: 300px; /* Adjust as needed */
+                justify-content: center; /* Center the images horizontally */
+            }
+
+            .image-stack img {
+                width: 50%; /* Each image takes up 50% of the container width */
+                position: absolute; /* Position images on top of each other */
+            }
+
+            .image-stack img:nth-child(1) {
+                left: 10%; /* Initial position for the first image */
+                transform: translateX(-20px); /* Slightly offset the first image */
+                opacity: 1;
+            }
+
+            .image-stack img:nth-child(2) {
+                left: 40%; /* Initial position for the second image */
+                transform: translateX(20px); /* Slightly offset the second image */
+                opacity: 1;
+            }
+
+            .image-stack:hover img:nth-child(1) {
+                transform: translateX(-100px); /* Move first image further on hover */
+            }
+
+            .image-stack:hover img:nth-child(2) {
+                transform: translateX(30px); /* Bring second image to center on hover */
+                width: 80%;
+            }
         }
 
         /* Modal Styles */
