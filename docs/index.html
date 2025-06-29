@@ -51,7 +51,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Dark overlay for text readability */
+            background: rgba(0, 0, 0, 0.366); /* Dark overlay for text readability */
         }
 
         /* Custom App Icon Styling (Orange & Black Gear) */
@@ -206,7 +206,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 50%;
             height: 100%;
             object-fit: cover;
             border-radius: 8px;
@@ -216,22 +216,22 @@
         }
 
         .image-stack img:nth-child(1) {
-            transform: translateY(-20px);
+            transform: translateY(-10px);
             opacity: 1;
         }
 
         .image-stack img:nth-child(2) {
-            transform: translateY(20px);
+            transform: translateY(70px);
             opacity: 1;
         }
 
         .image-stack:hover img:nth-child(1) {
-            transform: translateY(-100px);
+            transform: translateY(-70px);
             opacity: 1;
         }
 
         .image-stack:hover img:nth-child(2) {
-            transform: translateY(0px);
+            transform: translateY(-20px);
             opacity: 1;
         }
 
@@ -308,6 +308,32 @@
             font-size: 24px;
             cursor: pointer;
         }
+
+        /* Styles for the particle system */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Behind the hero content */
+        }
+
+        #benefits-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Behind the content */
+        }
+    </style>
+    <link rel="stylesheet" media="screen" href="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.css">
+    <style>
+        #header-particles {
+            width: 80px;
+            height: 80px;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans leading-normal tracking-normal">
@@ -349,6 +375,7 @@
 
     <!-- Hero Section -->
     <section class="hero-bg h-screen flex items-center justify-center text-center relative">
+        <div id="particles-js"></div>
         <div class="hero-overlay"></div>
         <div class="relative z-10 text-white px-4">
             <h1 class="text-4xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up">
@@ -362,6 +389,14 @@
             </a>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        /* particlesJS.load(@dom-id, @path-json, @callback (optional) ); */
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('particles.json loaded - callback');
+        });
+    </script>
 
     <!-- Features Section -->
     <section id="features" class="py-20 bg-white">
@@ -421,8 +456,9 @@
     </section>
 
     <!-- Benefits Section -->
-    <section id="benefits" class="py-20 bg-gray-900 text-white">
-        <div class="container mx-auto px-4 text-center">
+    <section id="benefits" class="py-20 bg-gray-900 text-white relative">
+        <div id="benefits-particles"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-orange-500 animate-on-scroll">Why Choose GearFlow Pro?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="text-left animate-on-scroll">
@@ -460,6 +496,13 @@
             </div>
         </div>
     </section>
+
+    <script>
+        /* particlesJS.load(@dom-id, @path-json, @callback (optional) ); */
+        particlesJS.load('benefits-particles', 'particles.json', function() {
+            console.log('particles.json loaded - callback');
+        });
+    </script>
 
     <!-- The Modal -->
     <div id="imageModal" class="modal">
