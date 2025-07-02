@@ -191,7 +191,7 @@
                 <div class="download-card">
                     <h3>Single User Version</h3>
                     <p>Ideal for individual users. Install and activate on a single machine.</p>
-                    <a href="https://downloads.mafaro.co.zw/GearFlow_Pro_Setup 1.0.0.exe" class="download-button">Download Single User</a>
+                    <button onclick="downloadSingleUser()" class="download-button">Download Single User</button>
                 </div>
                 <div class="download-card">
                     <h3>Multi-User Version</h3>
@@ -233,7 +233,9 @@
         function closeModal() {
             document.getElementById('multiUserModal').style.display = 'none';
         }
-        
+        function downloadSingleUser(){
+            window.location.href = "https://downloads.mafaro.co.zw/GearFlowPro_Setup1.0.0.exe";
+        }
         // Close modal when clicking outside of it
         window.onclick = function(event) {
             const modal = document.getElementById('multiUserModal');
@@ -247,6 +249,7 @@
             if (event.key === 'Escape') {
                 closeModal();
             }
+        
         });
     </script>
 </body>
