@@ -201,6 +201,98 @@
         details > div {
             padding: 1rem;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #1f2937;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            animation: fadeInScale 0.3s ease-out forwards;
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #f97316;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content h2 svg {
+            margin-right: 10px;
+        }
+
+        .modal-content p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .modal-content ul li {
+            background-color: #374151;
+            padding: 8px 15px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #e5e7eb;
+        }
+
+        .modal-button {
+            background-color: #f97316;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .modal-button:hover {
+            background-color: #323232;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,7 +317,7 @@
                                 <li>Access to all features</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Quarterly Key</h3>
@@ -234,7 +326,7 @@
                                 <li>Access to all features</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Yearly Key</h3>
@@ -243,7 +335,7 @@
                                 <li>Access to all features</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -261,7 +353,7 @@
                                 <li>Access for 2 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Quarterly</h3>
@@ -270,7 +362,7 @@
                                 <li>Access for 2 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Yearly</h3>
@@ -279,7 +371,7 @@
                                 <li>Access for 2 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -296,7 +388,7 @@
                                 <li>Access for 4 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Quarterly</h3>
@@ -305,7 +397,7 @@
                                 <li>Access for 4 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Yearly</h3>
@@ -314,7 +406,7 @@
                                 <li>Access for 4 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -331,7 +423,7 @@
                                 <li>Access for 6 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Quarterly</h3>
@@ -340,7 +432,7 @@
                                 <li>Access for 6 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Yearly</h3>
@@ -349,7 +441,7 @@
                                 <li>Access for 6 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -366,7 +458,7 @@
                                 <li>Access for 8 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Quarterly</h3>
@@ -375,7 +467,7 @@
                                 <li>Access for 8 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                         <div class="pricing-card">
                             <h3>Yearly</h3>
@@ -384,7 +476,7 @@
                                 <li>Access for 8 users</li>
                                 <li>Updates and support</li>
                             </ul>
-                            <a href="#" class="pricing-button">Buy Now</a>
+                            <a href="#" class="pricing-button buy-button">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -403,6 +495,28 @@
         <p>&copy; 2025 GearFlow Pro. All rights reserved.</p>
     </footer>
 
+    <!-- The Modal -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+                    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.02-3.03a.75.75 0 0 0-1.06 0L9.47 11.72a.75.75 0 0 0 1.06 1.06l.97-.97v2.44a.75.75 0 0 0 1.5 0V11.81l.97.97a.75.75 0 1 0 1.06-1.06L13.27 8.97Z" clip-rule="evenodd" />
+                </svg>
+                Important Information
+            </h2>
+            <p>To buy an activation key get in contact with us on the following number:</p>
+            <p class="font-bold text-lg text-orange-400">+263778040497</p>
+            <p>Available on WhatsApp and calls</p>
+            <p class="mt-4">Activation keys can be purchased with:</p>
+            <ul>
+                <li>Ecocash</li>
+                <li>InnBucks</li>
+            </ul>
+            <p class="text-sm text-gray-400">After purchasing you will receive your Activation key via WhatsApp or SMS</p>
+            <button id="closeModalButton" class="modal-button mt-6">OK</button>
+        </div>
+    </div>
+
     <script>
         particlesJS.load('particles-js', 'particles.json', function() {
             console.log('particles.json loaded...');
@@ -416,6 +530,35 @@
                 }
             });
         }
+
+        // Get the modal
+        const modal = document.getElementById("buyModal");
+
+        // Get the button that opens the modal
+        const buyButtons = document.querySelectorAll(".buy-button");
+
+        // Get the <span> element that closes the modal
+        const closeModalButton = document.getElementById("closeModalButton");
+
+        // When the user clicks on a buy button, open the modal
+        buyButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                modal.style.display = "flex"; // Use flex to center the modal content
+            });
+        });
+
+        // When the user clicks on OK button, close the modal
+        closeModalButton.addEventListener('click', function() {
+            modal.style.display = "none";
+        });
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
     </script>
 </body>
 </html>
