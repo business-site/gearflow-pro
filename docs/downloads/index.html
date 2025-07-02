@@ -75,6 +75,8 @@
             font-weight: bold;
             display: inline-block;
             transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
         .download-button:hover {
             background-color: #1e1e1e;
@@ -97,6 +99,78 @@
             left: 0;
             z-index: 0; /* Behind the content */
         }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease-in-out;
+            color: #333;
+        }
+        
+        .modal-content h3 {
+            color: #f97316;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .modal-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .modal-ok-button {
+            background-color: #f97316;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .modal-ok-button:hover {
+            background-color: #e5650e;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
     <link rel="stylesheet" media="screen" href="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.css">
 </head>
@@ -117,16 +191,25 @@
                 <div class="download-card">
                     <h3>Single User Version</h3>
                     <p>Ideal for individual users. Install and activate on a single machine.</p>
-                    <a href="#" class="download-button">Download Single User</a>
+                    <a href="https://downloads.mafaro.co.zw/GearFlow_Pro_Setup 1.0.0.exe" class="download-button">Download Single User</a>
                 </div>
                 <div class="download-card">
                     <h3>Multi-User Version</h3>
                     <p>For businesses with multiple users. Requires a central server setup for multi-user activation.</p>
-                    <a href="#" class="download-button">Download Multi-User</a>
+                    <button class="download-button" onclick="showModal()">Download Multi-User</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div id="multiUserModal" class="modal">
+        <div class="modal-content">
+            <h3>Multi-user client will be available soon</h3>
+            <p>We value your needs and business continuity</p>
+            <button class="modal-ok-button" onclick="closeModal()">OK</button>
+        </div>
+    </div>
 
     <footer class="bg-gray-900 text-gray-400 py-10 text-center">
         <div class="container mx-auto px-4">
@@ -140,6 +223,30 @@
         /* particlesJS.load(@dom-id, @path-json, @callback (optional) ); */
         particlesJS.load('particles-js', 'particles.json', function() {
             console.log('particles.json loaded - callback');
+        });
+        
+        // Modal functions
+        function showModal() {
+            document.getElementById('multiUserModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('multiUserModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('multiUserModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
