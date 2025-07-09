@@ -230,6 +230,7 @@
     </footer>
     
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js" integrity="sha512-WkZrEcQ5LMyNy6Y2PQf+Tu3vMcsmKKRKuPXtJSTHQJ3mpuvLRlA5dlDDhrrcXfyWr6Z/y3wIMfjfqVFO/gDZYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         /* particlesJS.load(@dom-id, @path-json, @callback (optional) ); */
         particlesJS.load('particles-js', 'particles.json', function() {
@@ -244,7 +245,16 @@
         function closeModal() {
             document.getElementById('multiUserModal').style.display = 'none';
         }
+
         function downloadSingleUser(){
+
+            response = axios.post('https://downloads.mafaro.co.zw/counter/api/downloads')
+            .then(response => {
+            })
+            .catch(error => {
+                console.error('Error recording download:', error);
+            });
+
             window.location.href = "https://downloads.mafaro.co.zw/GearFlowPro_Setup1.1.0.exe";
         }
         // Function to handle User Manual download
