@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GearFlow Pro - Book a Demo</title>
+    <!-- Open Graph / Facebook (adapted from landing page) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://business-site.github.io/gearflow-pro/demo">
+    <meta property="og:site_name" content="GearFlow Pro">
+    <meta property="og:title" content="GearFlow Pro - Book a Demo">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:description" content="Schedule a personalized demo of GearFlow Pro, the ultimate inventory management solution for auto parts businesses.">
+    <meta property="og:image" content="https://business-site.github.io/gearflow-pro/preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="550">
+    <meta property="og:image:alt" content="GearFlow Pro - Demo Booking">
+    <!-- Twitter (adapted from landing page) -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://business-site.github.io/gearflow-pro/demo">
+    <meta property="twitter:title" content="GearFlow Pro - Book a Demo">
+    <meta property="twitter:description" content="Schedule a personalized demo of GearFlow Pro, the ultimate inventory management solution for auto parts businesses.">
+    <meta property="twitter:image" content="https://business-site.github.io/gearflow-pro/preview.png">
+
+    <!-- Additional SEO meta tags -->
+    <meta name="description" content="Schedule a personalized demo of GearFlow Pro, the ultimate inventory management solution for auto parts businesses.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="inventory management demo, auto parts software demo, GearFlow Pro demo, schedule demo, inventory solution">
+    <meta name="theme-color" content="#f97316">
+    <meta name="application-name" content="GearFlow Pro">
+    <meta name="author" content="Tanaka Chinengundu">
+    <link rel="canonical" href="https://business-site.github.io/gearflow-pro/demo">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Axios for HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        /* Custom Styles for the Demo Booking Page */
+        /* Inheriting the app-icon style from the landing page for consistency */
+        .app-icon {
+            width: 80px; /* Size of the icon */
+            height: 80px;
+            background-color: #000; /* Black background of the icon */
+            border-radius: 20px; /* Rounded corners for the icon container */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); /* Subtle shadow for depth */
+            animation: rotateGear 5s linear infinite; /* Animation for the gear */
+        }
+        .app-icon::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background-color: #f97316; /* Vibrant Orange for the gear itself */
+            border-radius: 50%; /* Base circle for the gear shape */
+            /* Using clip-path for a basic gear shape. For complex gears, an SVG is better. */
+            clip-path: polygon(
+                50% 0%, 55% 5%, 60% 0%, 65% 5%, 70% 0%, 75% 5%, 80% 0%, 85% 5%, 90% 0%, 95% 5%,
+                100% 50%,
+                95% 55%, 100% 60%, 95% 65%, 100% 70%, 95% 75%, 100% 80%, 95% 85%, 100% 90%, 95% 95%,
+                50% 100%,
+                45% 95%, 40% 100%, 35% 95%, 30% 100%, 25% 95%, 20% 100%, 15% 95%, 10% 100%, 5% 95%,
+                0% 50%,
+                5% 45%, 0% 40%, 5% 35%, 0% 30%, 5% 25%, 0% 20%, 5% 15%, 0% 10%, 5% 5%
+            );
+            transform: rotate(20deg); /* Slightly rotated for visual interest */
+        }
+        .app-icon::after {
+            content: '';
+            position: absolute;
+            width: 25px; /* Inner black circle of the gear */
+            height: 25px;
+            background-color: #000; /* Black inner part */
+            border-radius: 50%;
+        }
+
+        /* Keyframe for gear rotation animation */
+        @keyframes rotateGear {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Hero Section Background Image and Overlay (adapted from landing page) */
+        .hero-bg {
+            background-image: url('https://www.idolz.com/wp-content/uploads/2021/04/vehicle-spare-parts-1-1.jpg'); /* Placeholder: Replace with a high-quality image */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.47); /* Dark overlay for text readability */
+        }
+
+        /* Mobile Menu Styles (copied from landing page) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .mobile-menu .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Custom styles for form elements - ENHANCED FOR DARK THEME */
+        .form-input {
+            @apply w-full p-3 border border-gray-600 bg-gray-700 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition duration-200 placeholder-gray-400;
+        }
+        .form-label {
+            @apply block text-gray-200 text-sm font-semibold mb-2;
+        }
+        .form-button {
+            @apply bg-orange-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-orange-600 transition duration-300 transform hover:scale-105;
+        }
+
+        /* Message box for form submission status - ADAPTED FOR DARK THEME */
+        .message-box {
+            @apply p-4 rounded-lg text-center font-medium mt-6;
+        }
+        .message-box.success {
+            @apply bg-green-700 text-green-100 border border-green-600;
+        }
+        .message-box.error {
+            @apply bg-red-700 text-red-100 border border-red-600;
+        }
+
+        /* Scroll-triggered animations for sections */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Header & Navigation (copied from landing page) -->
+    <header class="bg-gray-900 text-white p-6 sticky top-0 z-50 shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Custom App Icon - CSS Generated -->
+                <div class="app-icon"></div>
+                <a href="index.html" class="text-2xl font-bold text-orange-500">GearFlow Pro</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="text-white text-2xl focus:outline-none md:hidden">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="hidden md:flex space-x-6 text-lg">
+                <li><a href="index.html#features" class="hover:text-orange-500 transition duration-300">Features</a></li>
+                <li><a href="index.html#benefits" class="hover:text-orange-500 transition duration-300">Benefits</a></li>
+                <li><a href="index.html#contact" class="hover:text-orange-500 transition duration-300">Contact</a></li>
+                <li><a href="pricing.html" class="hover:text-orange-500 transition duration-300">Pricing</a></li>
+                <li><a href="downloads.html" class="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-300 font-medium">Download Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu (Hidden by default) (copied from landing page) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <span class="close-btn" id="close-menu-button">&times;</span>
+        <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#benefits">Benefits</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="downloads.html">Download Now</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section for Demo Booking -->
+    <section class="hero-bg h-64 flex items-center justify-center text-center relative">
+        <div class="hero-overlay"></div>
+        <div class="relative z-10 text-white px-4">
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
+                Book Your Personalized Demo
+            </h1>
+            <p class="text-lg md:text-xl">
+                See GearFlow Pro in action and discover how it can transform your business.
+            </p>
+        </div>
+    </section>
+
+    <!-- Demo Booking Form Section -->
+    <section class="py-16 bg-gray-900 animate-on-scroll">
+        <!-- Changed max-w-3xl to max-w-4xl for a wider form container -->
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-orange-500 text-center">Schedule Your Demo</h2>
+            <p class="text-lg text-gray-300 mb-8 text-center">
+                Fill out the form below, and our team will get in touch to arrange a convenient time for your demo.
+            </p>
+
+            <form id="demoForm" class="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="form-label">Full Name <span class="text-red-400">*</span></label>
+                        <input type="text" id="name" name="name" class="form-input text-gray-900" placeholder="John Doe" required>
+                    </div>
+                    <div>
+                        <label for="email" class="form-label">Email Address <span class="text-red-400">*</span></label>
+                        <input type="email" id="email" name="email" class="form-input text-gray-900" placeholder="john.doe@example.com" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="company" class="form-label">Company Name <span class="text-red-400">*</span></label>
+                        <input type="text" id="company" name="company" class="form-input text-gray-900" placeholder="ABC Auto Parts" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-input text-gray-900" placeholder="+263 778 040 499">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="date" class="form-label">Preferred Date <span class="text-red-400">*</span></label>
+                        <input type="date" id="date" name="date" class="form-input text-gray-900" required>
+                    </div>
+                    <div>
+                        <label for="time" class="form-label">Preferred Time <span class="text-red-400">*</span></label>
+                        <select id="time" name="time" class="form-input text-gray-900" required>
+                            <option value="">Select a time slot</option>
+                            <option value="09:00 AM">09:00 AM - 10:00 AM</option>
+                            <option value="10:00 AM">10:00 AM - 11:00 AM</option>
+                            <option value="11:00 AM">11:00 AM - 12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM - 02:00 PM</option>
+                            <option value="02:00 PM">02:00 PM - 03:00 PM</option>
+                            <option value="03:00 PM">03:00 PM - 04:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Text area now spans full width on medium screens and is within a wider container -->
+                <div class="mb-6 md:col-span-2">
+                    <!-- <label for="message" class="form-label">Your Message / Specific Interests</label> -->
+                    <textarea id="message" name="message" rows="5" cols="50" style="margin-left: 25%; margin-top: 5%; color:grey" placeholder="Tell us more about your business needs or specific features you'd like to see..."></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="form-button">
+                        Book My Demo <i class="fas fa-calendar-alt ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Message box for form status -->
+                <div id="formMessage" class="message-box hidden"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (copied from landing page) -->
+    <footer class="bg-gray-900 text-gray-400 py-10 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 GearFlow Pro. All rights reserved.</p>
+            <p class="mt-2 text-sm">Made with <i class="fas fa-heart text-red-500"></i> in Harare, Zimbabwe.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for UI/UX enhancements and form submission -->
+    <script>
+        // Mobile Menu Functionality (copied from landing page)
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+            });
+
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+
+            // Close the mobile menu when a link is clicked
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+
+            // Set min date for the date input to today
+            const dateInput = document.getElementById('date');
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+            const day = String(today.getDate()).padStart(2, '0');
+            dateInput.min = `${year}-${month}-${day}`;
+        });
+
+        // Form Submission Logic
+        const demoForm = document.getElementById('demoForm');
+        const formMessage = document.getElementById('formMessage');
+
+        demoForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            // Clear previous messages
+            formMessage.classList.add('hidden');
+            formMessage.classList.remove('success', 'error');
+            formMessage.textContent = '';
+
+            // Basic client-side validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const company = document.getElementById('company').value.trim();
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            if (!name || !email || !company || !date || !time) {
+                formMessage.classList.remove('hidden');
+                formMessage.classList.add('error');
+                formMessage.textContent = 'Please fill in all required fields.';
+                return;
+            }
+
+            // Prepare form data
+            const formData = {
+                name: name,
+                email: email,
+                company: company,
+                phone: document.getElementById('phone').value.trim(),
+                preferredDate: date,
+                preferredTime: time,
+                message: document.getElementById('message').value.trim()
+            };
+
+            // Display loading message
+            formMessage.classList.remove('hidden');
+            formMessage.classList.add('message-box'); // Ensure base styling
+            formMessage.textContent = 'Submitting your request...';
+
+            // Dummy endpoint for testing. Replace with your actual endpoint.
+            const book = 'https://downloads.mafaro.co.zw/counter/api/book-demo';
+
+            try {
+                const response = await axios.post(book, formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                console.log('Form submission successful:', response.data);
+
+                formMessage.classList.remove('message-box'); // Remove loading styling
+                formMessage.classList.add('success');
+                formMessage.textContent = 'Demo request submitted successfully! We will contact you shortly.';
+                demoForm.reset(); // Clear the form on success
+
+            } catch (error) {
+                console.error('Error submitting form:', error);
+
+                formMessage.classList.remove('message-box'); // Remove loading styling
+                formMessage.classList.add('error');
+                formMessage.textContent = 'Failed to submit demo request. Please try again later.';
+
+                // Log more specific error details if available
+                if (error.response) {
+                    console.error('Error response data:', error.response.data);
+                    console.error('Error response status:', error.response.status);
+                    console.error('Error response headers:', error.response.headers);
+                } else if (error.request) {
+                    console.error('Error request:', error.request);
+                } else {
+                    console.error('Error message:', error.message);
+                }
+            }
+        });
+
+        // Simple Intersection Observer for Fade-in on Scroll for the form section
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing once it's visible
+                }
+            });
+        }, {
+            threshold: 0.2, // Trigger when 20% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // Offset the trigger point
+        });
+
+        // Apply scroll animations to the form section
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
